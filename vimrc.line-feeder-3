@@ -1,0 +1,39 @@
+"" Line Feeder 3
+"" by David B. Dahl
+"" December 2010
+
+"" Note: This is just a copy from configs repository.  Make changes there.
+
+function! LineFeederNextLine()
+  call system("tmux select-pane -D")
+  call system("tmux send-keys " . shellescape(getline('.') . ""))
+  call system("tmux select-pane -U")
+  normal j
+endfunction
+
+function! LineFeederSetUp()
+  let ext = expand("%:e")
+  if ext == "R"
+    let cmd = "nice -5 R --silent --no-restore"
+  elseif ext == "m"
+    let cmd = "matlab"
+  elseif ext == "c"
+    let cmd = "vulture main.c ./cbuild"
+  elseif ext == "py"
+    let cmd = "nice -5 python"
+  elseif ext == "jl"
+    let cmd = "nice -5 julia"
+  else
+    let cmd = "bash"
+  endif
+  let cmd = input("Execute: ",cmd)
+  if cmd != ""
+    "call system("tmux set-option default-path " . shellescape(expand("%:p:h")))
+    call system("tmux split-window -d -p 34 " . shellescape("exec " . cmd))
+  endif
+endfunction
+
+nnoremap <silent> <C-k> :call LineFeederSetUp()<cr>
+nnoremap <silent> <C-j> :call LineFeederNextLine()<cr>
+nnoremap <silent> <C-h> :%call LineFeederNextLine()<cr>
+
