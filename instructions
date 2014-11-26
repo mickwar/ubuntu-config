@@ -1,0 +1,138 @@
+### things to install
+vim tmux chromium-browser build-essential tex-live git
+
+### things to remove
+indicator-messages 
+
+### things to purge
+firefox
+
+### installing R
+# 1. Edit /etc/apt/sources.list to include the following line:
+# for 14.04
+deb http://cran.stat.ucla.edu/bin/linux/ubuntu trusty/
+# for 12.04
+deb http://cran.stat.ucla.edu/bin/linux/ubuntu precise/
+# the part before /bin may be changed for a different mirror
+
+# 2. Get the key with
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+# 3. Then:
+sudo apt-get update
+sudo apt-get install r-base
+
+# set a default CRAN mirror for installing packages
+# edit /etc/R/Rprofile.site (need sudo)
+# add the line (not related to the mirror):
+options("max.print"=10000)
+
+# add the following lines:
+local({r <- getOption("repos")
+    r["CRAN"] <- "http://cran.stat.ucla.edu"
+    options(repos=r)})
+
+# installing rgl package, first do:
+sudo apt-get build-dep r-cran-rgl
+# then sudo R, and install.packages("rgl")
+
+### disable text box on the desktop
+# 1. Install gnome-tweak-tool: sudo apt-get install gnome-tweak-tool
+# 2. Open 'gnome-tweak-tool'
+# 3. Under Desktop, swtich 'Have file manager handle the desktop' to
+#    off.
+
+### disable update manager
+# 1. Run this line in bash
+sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
+# 2. Go to 'Startup Application' (12.04, not sure where in 14.04)
+# 3. Uncheck the box next to 'Update Manager'
+# 4. Open 'Update Manager' and change check for updates to 'Never'
+
+# An explanation for the above command: The *.desktop files in the
+# /etc/xdg/autostart directory are the launchers for each listed
+# process, and some but not all of them contain the line
+# "NoDisplay=true" to prevent them from being displayed in the
+# Autostart dialog. His command simply changes that line from "true"
+# to "false" in any desktop file that contains it, so that all of the
+# launchers appear in the dialog and can be enabled or disabled.
+
+### clean up the home directory
+# 1. Run the command:
+sed -i 's/HOME\/[A-Z].*/HOME\/downloads/' ~/.config/user-dirs.dirs
+# to set all those default directories to ~/downloads.
+# 2. Remove every non hidden directory in ~/ with (be careful)
+#find ~ -maxdepth 1 -type d -not -path '*/\.*' -name '[A-Z]*' -exec rm -rf {} \;
+# 3. Create directories:
+mkdir ~/bin ~/downloads ~/files
+# 4. Make necessary changes in web browser (such as where to download)
+
+### change system settings
+# Appearance: download awesome space-related image, and put it in
+#   /usr/share/backgrounds (may need sudo privileges), then remove all
+#   those nasty default backgrounds, smalled launcher icon size
+#   under Behavior: auto-hide launcher on, reveal location top left, low
+#   sensitivity
+#   (dash can be accessed with the super key, or the windows key)
+# Brightness and Lock: screen off never, lock off
+# Keyboard Layout: Options -> Caps Lock key behavior -> disabled
+# Privacy: under Files, do not record activity
+# Displays: sticky edges off
+# Keyboard: under Typing: make delay at about 1/6 the length and speed
+#   on fastest. under Shortcuts: disable nearly everything
+#   launch terminal: ctrl + T
+#   web browser: shift + ctrl + C
+#   workspace, move window: shift + ctrl + (vi keys)
+#   workspace, move around: ctrl + alt + (vi keys)
+#   vol down: ctrl + F11
+#   vol up: ctrl + F12
+
+### disable gnome help (F1) and F10
+# F1
+# open a terminal. go to edit -> keyboard shortcuts. at the bottom
+# is contents, disable it.
+# while in Keyboard shortcuts, uncheck the two boxes at the top
+# F10 (these were given for 11.04, they may not all be necessary)
+# install compizconfig-settings-manager
+# go to dash (windows/super key) and open compizconfig from there
+# go to Ubuntu Unity Plugin (under Desktop)
+# Click the first button to the right of "Key to open the first panel menu"
+# unchecked Enabled
+# install gconf-editor
+# run gconf-editor
+# descend to desktop/gnome/interface
+# at menubar_accel, delete the F10 value
+# (12.04) run this:
+mkdir -p ~/.config/gtk-3.0
+cat<<EOF > ~/.config/gtk-3.0/gtk.css
+
+@binding-set NoKeyboardNavigation {
+     unbind "<shift>F10"
+}
+
+* {
+     gtk-key-bindings: NoKeyboardNavigation
+}
+
+EOF
+
+### git (setting up some info)
+git config --global user.name "put name here"
+git config --global user.email "email here"
+
+# create a clone from github
+git clone git@github.com:mickwar/"the_repository" "local_dir"
+# local_dir will contain the files and directories from the github
+# repository including the .git directory
+# using this command will require that I added the public ssh key from
+# the current host to my github profile
+
+# purge a file and it's history from a repository (i.e. delete it)
+git filter-branch  --force --index-filter \
+'git rm --cached --ignore-unmatch PATH/FILENAME' \
+--prune-empty --tag-name-filter cat -- --all
+git push --force
+# see github.com/articles/remove-sensitive-data for more details
+
+# if [ `hostname` == "quasar" ]; then
+#     # actions
+# fi
