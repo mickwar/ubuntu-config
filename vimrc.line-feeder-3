@@ -16,7 +16,7 @@ function! LineFeederSetUp()
   if ext == "R"
     let cmd = "nice -5 R --silent --no-restore"
   elseif ext == "m"
-    let cmd = "matlab"
+    let cmd = "matlab -nosplash -nodesktop"
   elseif ext == "c"
     let cmd = "vulture main.c ./cbuild"
   elseif ext == "py"
