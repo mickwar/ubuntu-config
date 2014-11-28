@@ -1,0 +1,41 @@
+"" LaTeX Helper
+"" by David B. Dahl
+"" July 2014
+
+"" Note: This is just a copy from configs repository.  Make changes there.
+
+function! LaTeXBeginEnd()
+ruby <<EOF
+  buffer = VIM::Buffer.current
+  num = VIM::Buffer.current.line_number
+  line = buffer.line
+  buffer.delete(num)
+  num -= 1
+  buffer.append(num,"\\end{#{line}}")
+  extra = case line
+    when "itemize", "enumerate"
+      "\\item "
+    else
+      ""
+  end
+  buffer.append(num,extra)
+  buffer.append(num,"\\begin{#{line}}")
+  VIM.command("normal j$")
+EOF
+endfunction
+
+nnoremap <silent> <C-o> :call LaTeXBeginEnd()<cr>
+inoremap <silent> <C-o> :call LaTeXBeginEnd()<cr>a
+
+function! SyncTexForward()
+  let synctex = glob("*.synctex.gz")
+  if strlen(synctex) == 0
+    echo "no synctex file found"
+  else
+    let execstr = "silent !editlatex --forward " . shellescape("%:p") . " " . line(".")
+    exec execstr
+    normal 
+  end
+endfunction
+nnoremap <silent> <C-u> :call SyncTexForward()<cr>
+

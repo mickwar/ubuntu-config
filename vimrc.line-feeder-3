@@ -2,7 +2,12 @@
 "" by David B. Dahl
 "" December 2010
 
-"" Note: This is just a copy from configs repository.  Make changes there.
+
+" When in a tmux session, with your file being editted
+" by vi, hit Ctrl + K to split the window and run a
+" new process (such as R for .R files or MATLAB for .m
+" files). Lines can be sent from the upper window (the
+" script) to the lower window (console) with Ctrl + J.
 
 function! LineFeederNextLine()
   call system("tmux select-pane -D")
