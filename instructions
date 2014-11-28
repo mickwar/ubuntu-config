@@ -73,6 +73,26 @@ sed -i 's/HOME\/[A-Z].*/HOME\/downloads/' ~/.config/user-dirs.dirs
 mkdir ~/bin ~/downloads ~/files
 # 4. Make necessary changes in web browser (such as where to download)
 
+### Make soft links for the config and rc files in this directory to
+### the home directory (assumes the current directory is the one with
+### the files)
+ln -s ./bashrc ~/.bashrc
+ln -s ./bash_aliases ~/.bash_aliases
+ln -s ./vimrc ~/.vimrc
+ln -s ./vimrc.line-feeder-3 ~/.vimrc.line-feeder-3
+ln -s ./gitconfig ~/.gitconfig
+ln -s ./gitignore_global ~/.gitignore_global
+ln -s ./tmux.conf ~/.tmux.conf
+# may need to remove the files from ~ first if they exists:
+#rm -f ~/.bashrc
+#rm -f ~/.bash_aliases
+#rm -f ~/.vimrc
+#rm -f ~/.vimrc.line-feeder-3
+#rm -f ~/.gitconfig
+#rm -f ~/.gitignore_global
+#rm -f ~/.tmux.conf
+
+
 ### change system settings
 # Appearance: download awesome space-related image, and put it in
 #   /usr/share/backgrounds (may need sudo privileges), then remove all
