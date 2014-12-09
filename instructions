@@ -165,6 +165,13 @@ git filter-branch  --force --index-filter \
 --prune-empty --tag-name-filter cat -- --all
 git push --force
 # see github.com/articles/remove-sensitive-data for more details
+# to loop through a bunch of files to purge, use:
+# while read FILE; do
+#   git filter-branch  --force --index-filter \
+#   "git rm --cached --ignore-unmatch $PATH" \
+#   --prune-empty --tag-name-filter cat -- --all
+# done </path/file
+# git push --force
 
 # if [ `hostname` == "quasar" ]; then
 #     # actions
