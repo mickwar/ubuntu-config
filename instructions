@@ -2,7 +2,7 @@
 ### set up to how I like
 
 ### things to install
-vim tmux chromium-browser build-essential tex-live git
+vim tmux chromium-browser build-essential tex-live git inotify-tools
 
 ### things to remove
 indicator-messages 
