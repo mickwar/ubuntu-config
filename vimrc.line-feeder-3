@@ -28,6 +28,8 @@ function! LineFeederSetUp()
     let cmd = "nice -5 python"
   elseif ext == "jl"
     let cmd = "nice -5 julia"
+  elseif ext == "tex"
+    let cmd = "vulture main.tex texbuild --noprint"
   else
     let cmd = "bash"
   endif
