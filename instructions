@@ -3,6 +3,7 @@
 
 ### things to install
 vim tmux chromium-browser build-essential tex-live git inotify-tools
+# the inotify-tools package is for the vulture binary
 
 ### things to remove
 indicator-messages 
