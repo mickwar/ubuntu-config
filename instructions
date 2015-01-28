@@ -4,6 +4,7 @@
 ### things to install
 vim tmux chromium-browser build-essential tex-live git inotify-tools
 # the inotify-tools package is for the vulture binary
+# installing openssh-server allows others to ssh into the computer
 
 ### things to remove
 indicator-messages 
