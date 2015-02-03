@@ -5,6 +5,7 @@
 vim tmux chromium-browser build-essential tex-live git inotify-tools
 # the inotify-tools package is for the vulture binary
 # installing openssh-server allows others to ssh into the computer
+# libcurl4-gnults-dev is required to install RCurl package
 
 ### things to remove
 indicator-messages 
