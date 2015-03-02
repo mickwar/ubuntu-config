@@ -31,7 +31,7 @@ function! LineFeederSetUp()
         if filereadable("./cbuild")
             let cmd = "vulture " . file . " ./cbuild"
         else
-            let cmd = "vulture " . file . " cbuild " . file . file . ".out"
+            let cmd = "vulture " . file . " cbuild " . file . " " . expand("%:r") . ".out"
         endif
     elseif ext == "py"
         let cmd = "nice -5 python"
