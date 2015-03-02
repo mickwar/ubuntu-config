@@ -23,7 +23,9 @@ function! LineFeederSetUp()
   elseif ext == "m"
     let cmd = "matlab -nosplash -nodesktop"
   elseif ext == "c"
-    let cmd = "vulture main.c ./cbuild"
+    " expand("%:t") returns the name of the file being edited, omitting the directory
+    " the '.' is vim's string concatenation operator
+    let cmd = "vulture " . expand("%:t") . " ./cbuild"
   elseif ext == "py"
     let cmd = "nice -5 python"
   elseif ext == "jl"
