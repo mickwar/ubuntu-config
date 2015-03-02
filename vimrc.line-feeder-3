@@ -17,29 +17,36 @@ function! LineFeederNextLine()
 endfunction
 
 function! LineFeederSetUp()
-  let ext = expand("%:e")
-  if ext == "R"
-    let cmd = "nice -5 R --silent --no-restore"
-  elseif ext == "m"
-    let cmd = "matlab -nosplash -nodesktop"
-  elseif ext == "c"
     " expand("%:t") returns the name of the file being edited, omitting the directory
-    " the '.' is vim's string concatenation operator
-    let cmd = "vulture " . expand("%:t") . " ./cbuild"
-  elseif ext == "py"
-    let cmd = "nice -5 python"
-  elseif ext == "jl"
-    let cmd = "nice -5 julia"
-  elseif ext == "tex"
-    let cmd = "vulture main.tex texbuild --noprint"
-  else
-    let cmd = "bash"
-  endif
-  let cmd = input("Execute: ",cmd)
-  if cmd != ""
-    "call system("tmux set-option default-path " . shellescape(expand("%:p:h")))
-    call system("tmux split-window -d -p 34 " . shellescape("exec " . cmd))
-  endif
+    let file = expand("%:t")
+    " get the file extension of current file
+    let ext = expand("%:e")
+    if ext == "R"
+        let cmd = "nice -5 R --silent --no-restore"
+    elseif ext == "m"
+        let cmd = "matlab -nosplash -nodesktop"
+    elseif ext == "c"
+        " the '.' is vim's string concatenation operator
+        " check if readable file exists
+        if filereadable("./cbuild")
+            let cmd = "vulture " . file . " ./cbuild"
+        else
+            let cmd = "vulture " . file . " cbuild " . file . file . ".out"
+        endif
+    elseif ext == "py"
+        let cmd = "nice -5 python"
+    elseif ext == "jl"
+        let cmd = "nice -5 julia"
+    elseif ext == "tex"
+        let cmd = "vulture main.tex texbuild --noprint"
+    else
+        let cmd = "bash"
+    endif
+    let cmd = input("Execute: ",cmd)
+    if cmd != ""
+        "call system("tmux set-option default-path " . shellescape(expand("%:p:h")))
+        call system("tmux split-window -d -p 34 " . shellescape("exec " . cmd))
+    endif
 endfunction
 
 nnoremap <silent> <C-k> :call LineFeederSetUp()<cr>
