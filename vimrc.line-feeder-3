@@ -38,7 +38,9 @@ function! LineFeederSetUp()
     elseif ext == "jl"
         let cmd = "nice -5 julia"
     elseif ext == "tex"
-        let cmd = "vulture main.tex texbuild --noevince"
+        " my texbuild function still assumes that main.tex is the file to the compiled, not
+        " necessarily file
+        let cmd = "vulture " . file . " texbuild --noevince"
     else
         let cmd = "bash"
     endif
