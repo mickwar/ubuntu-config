@@ -5,6 +5,7 @@
 
 *.png
 *.jpg
+*.eps
 
 *.exe
 *.o
