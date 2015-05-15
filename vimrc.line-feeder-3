@@ -8,6 +8,7 @@
 " new process (such as R for .R files or MATLAB for .m
 " files). Lines can be sent from the upper window (the
 " script) to the lower window (console) with Ctrl + J.
+" Run every line in a script with Ctrl + H.
 
 function! LineFeederNextLine()
   call system("tmux select-pane -D")
