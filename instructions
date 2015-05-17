@@ -2,7 +2,7 @@
 ### set up to how I like
 
 ### things to install
-vim tmux chromium-browser build-essential tex-live git inotify-tools
+vim tmux build-essential tex-live git inotify-tools
 # the inotify-tools package is for the vulture binary
 # installing openssh-server allows others to ssh into the computer
 # libcurl4-gnults-dev is required to install RCurl package
@@ -11,7 +11,7 @@ vim tmux chromium-browser build-essential tex-live git inotify-tools
 indicator-messages 
 
 ### things to purge
-firefox
+firefox thunderbird
 
 ### installing R
 # 1. Edit /etc/apt/sources.list to include the following line:
