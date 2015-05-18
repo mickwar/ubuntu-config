@@ -179,3 +179,15 @@ git push --force
 # if [ `hostname` == "quasar" ]; then
 #     # actions
 # fi
+
+### vim syntax highlighting
+# create a file named julia.vim in ~/.vim/ftdetect with the following line
+au BufRead,BufNewFile *.jl set filetype=julia
+
+# this will allow you to have a julia.vim file in /usr/share/vim/vim74/syntax
+# for syntax highlighting in vim
+
+# have these soft links in vim's syntax directory (the originals in syntax may
+# need to be deleted first)
+sudo ln -s ~/files/ubuntu-config/r.vim /usr/share/vim/vim74/syntax/r.vim
+sudo ln -s ~/files/ubuntu-config/julia.vim /usr/share/vim/vim74/syntax/julia.vim
