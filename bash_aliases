@@ -11,7 +11,7 @@ alias convert="convert -density 600"
 # the -density 600 increase dpi for better solution, default is 72
 alias df="df -h"
 # for byu printing
-alias lpr="lpr -U mickfwop"
+alias lpr="lpr -U mawarner"
 
 # interaction
 alias mv="/bin/mv -i"
@@ -36,3 +36,4 @@ alias hilbertsftp='sftp mickfwop@hilbert.byu.edu'
 alias qessh='ssh mwarner@23.229.180.228'
 alias qeftp='sftp mwarner@23.229.180.228'
 alias aurora='ssh -X mickey@10.24.65.101'
+alias citris='ssh -X mawarner@citrisdance.soe.ucsc.edu'
