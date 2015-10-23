@@ -16,9 +16,9 @@ firefox thunderbird
 ### installing R
 # 1. Edit /etc/apt/sources.list to include the following line:
 # for 14.04
-deb http://cran.stat.ucla.edu/bin/linux/ubuntu trusty/
+deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu trusty/
 # for 12.04
-deb http://cran.stat.ucla.edu/bin/linux/ubuntu precise/
+deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu precise/
 # the part before /bin may be changed for a different mirror
 
 # 2. Get the key with
@@ -34,7 +34,7 @@ options("max.print"=10000)
 
 # add the following lines:
 local({r <- getOption("repos")
-    r["CRAN"] <- "http://cran.stat.ucla.edu"
+    r["CRAN"] <- "http://cran.cnr.berkeley.edu"
     options(repos=r)})
 
 # installing rgl package, first do:
