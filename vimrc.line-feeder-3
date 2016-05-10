@@ -56,3 +56,8 @@ nnoremap <silent> <C-k> :call LineFeederSetUp()<cr>
 nnoremap <silent> <C-j> :call LineFeederNextLine()<cr>
 nnoremap <silent> <C-h> :%call LineFeederNextLine()<cr>
 
+
+" function! LineFeederChunk()
+"   call LineFeederNextLine()
+" endfunction
+" vmap <silent> <C-j> :call LineFeederChunk()<CR>
