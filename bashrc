@@ -55,7 +55,9 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     # PS1 is the prompt
-    PS1="\[\033[1;36m\]\h\[\033[0m\]: \[\033[1;34m\]\W\[\033[0m\]/ \[\033[1;36m\]\$\[\033[0m\] "
+#   PS1="\[\033[1;36m\]\h\[\033[0m\]: \[\033[1;34m\]\W\[\033[0m\]/ \[\033[1;36m\]\$\[\033[0m\] "
+    PS1="(\[\033[1;36m\]\h\[\033[0m\]) \[\033[1;32m\]\u\[\033[0m\]: \[\033[1;34m\]\W\[\033[0m\]/ \[\033[1;32m\]\$\[\033[0m\] "
+
     # PS2 is for branching (if/else/for/while) in prompt
     PS2="\[\033[1;31m\]> \[\033[0m\]"
     # PS4 is when using the -x option (tracing) in a shell script
