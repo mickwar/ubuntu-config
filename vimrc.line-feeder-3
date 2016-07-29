@@ -52,9 +52,20 @@ function! LineFeederSetUp()
     endif
 endfunction
 
+function! Sourcer()
+    let file = expand("%:t")
+    let ext = expand("%:e")
+    if ext == "R"
+        call system("tmux select-pane -D")
+        call system("tmux send-keys 'source(\"./" . file . "\")'")
+        call system("tmux select-pane -U")
+    endif
+endfunction
+
 nnoremap <silent> <C-k> :call LineFeederSetUp()<cr>
 nnoremap <silent> <C-j> :call LineFeederNextLine()<cr>
-nnoremap <silent> <C-h> :%call LineFeederNextLine()<cr>
+"nnoremap <silent> <C-h> :%call LineFeederNextLine()<cr>
+nnoremap <silent> <C-h> :call Sourcer()<cr>
 
 
 " function! LineFeederChunk()
