@@ -4,17 +4,19 @@
 
 
 " When in a tmux session, with your file being editted
-" by vi, hit Ctrl + K to split the window and run a
+" by vi, hit Ctrl + k to split the window and run a
 " new process (such as R for .R files or MATLAB for .m
 " files). Lines can be sent from the upper window (the
-" script) to the lower window (console) with Ctrl + J.
-" Run every line in a script with Ctrl + H.
+" script) to the lower window (console) with Ctrl + j.
+
+" Run every line in a script with Ctrl + H. (so far
+" only compatible with R)
 
 function! LineFeederNextLine()
-  call system("tmux select-pane -D")
-  call system("tmux send-keys " . shellescape(getline('.') . ""))
-  call system("tmux select-pane -U")
-  normal j
+    call system("tmux select-pane -D")
+    call system("tmux send-keys " . shellescape(getline('.') . ""))
+    call system("tmux select-pane -U")
+    normal j
 endfunction
 
 function! LineFeederSetUp()
@@ -42,6 +44,8 @@ function! LineFeederSetUp()
         " my texbuild function still assumes that main.tex is the file to be compiled, not
         " necessarily file
         let cmd = "vulture " . file . " texbuild --noevince"
+    elseif ext == "ly"
+        let cmd = "vulture " . file . " lilypond " . file
     else
         let cmd = "bash"
     endif
@@ -64,11 +68,6 @@ endfunction
 
 nnoremap <silent> <C-k> :call LineFeederSetUp()<cr>
 nnoremap <silent> <C-j> :call LineFeederNextLine()<cr>
-"nnoremap <silent> <C-h> :%call LineFeederNextLine()<cr>
 nnoremap <silent> <C-h> :call Sourcer()<cr>
+vmap <silent> <C-j> :call LineFeederNextLine()<cr>
 
-
-" function! LineFeederChunk()
-"   call LineFeederNextLine()
-" endfunction
-" vmap <silent> <C-j> :call LineFeederChunk()<CR>
