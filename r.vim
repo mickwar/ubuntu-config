@@ -33,7 +33,7 @@ syn case match
 syn match rComment contains=@Spell "#.*"
 
 " Roxygen
-syn match rOKeyword contained "@\(param\|return\|name\|rdname\|examples\|include\|docType\)"
+syn match rOKeyword contained "@\(param\|description\|return\|name\|rdname\|details\|example\|examples\|include\|docType\)"
 syn match rOKeyword contained "@\(S3method\|TODO\|aliases\|alias\|assignee\|author\|callGraphDepth\|callGraph\)"
 syn match rOKeyword contained "@\(callGraphPrimitives\|concept\|exportClass\|exportMethod\|exportPattern\|export\|formals\)"
 syn match rOKeyword contained "@\(format\|importClassesFrom\|importFrom\|importMethodsFrom\|import\|keywords\)"
