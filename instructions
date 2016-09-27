@@ -83,7 +83,8 @@ mkdir ~/bin ~/downloads ~/files
 
 # change DIR as needed (soft links can't seem to figure out when using
 # current directory in the pathname)
-DIR=/home/mickey/files/ubuntu-config
+DIR=/home/mickey/files/repos/ubuntu-config
+
 
 ln -s $DIR/bashrc ~/.bashrc
 ln -s $DIR/bash_aliases ~/.bash_aliases
@@ -111,7 +112,7 @@ rm -f ~/.tmux.conf
 #   sensitivity
 #   (dash can be accessed with the super key, or the windows key)
 # Brightness and Lock: screen off never, lock off
-# Keyboard Layout: Options -> Caps Lock key behavior -> disabled
+# Keyboard Layout: Options -> Caps Lock key behavior -> disabled (use Tweak Tool for 16.04)
 # Privacy: under Files, do not record activity
 # Displays: sticky edges off
 # Keyboard: under Typing: make delay at about 1/6 the length and speed
@@ -152,7 +153,12 @@ cat<<EOF > ~/.config/gtk-3.0/gtk.css
 
 EOF
 
-### git (setting up some info)
+### Disable nautilus search box for desktop
+sudo apt-get installl gnome-tweak-tool
+# Open Tweak Tool from dash, go to Desktop, disable what seems relevant
+# For 16.04 you can use Tweak Tool to also disable the caps lock
+
+## git (setting up some info)
 git config --global user.name "put name here"
 git config --global user.email "email here"
 
