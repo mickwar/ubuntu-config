@@ -202,5 +202,5 @@ au BufRead,BufNewFile *.R set filetype=r
 mkdir ~/.vim/syntax
 # have these soft links in vim's syntax directory (the originals in syntax may
 # need to be deleted first)
-ln -s ~/files/ubuntu-config/r.vim ~/.vim/syntax/r.vim
+ln -s ~/files/repos/ubuntu-config/r.vim ~/.vim/syntax/r.vim
 ln -s ~/files/ubuntu-config/julia.vim ~/.vim/syntax/julia.vim
