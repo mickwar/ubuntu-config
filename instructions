@@ -204,3 +204,35 @@ mkdir ~/.vim/syntax
 # need to be deleted first)
 ln -s ~/files/repos/ubuntu-config/r.vim ~/.vim/syntax/r.vim
 ln -s ~/files/ubuntu-config/julia.vim ~/.vim/syntax/julia.vim
+
+### Set custom datetime format
+gsettings set com.canonical.indicator.datetime time-format 'custom'
+gsettings set com.canonical.indicator.datetime custom-time-format '          %A     %d %b %Y     %H:%M:%S          '
+
+### Mouse/touchpad settings
+gsettings set org.gnome.desktop.peripherals.touchpad send-events 'disabled'
+gsettings set org.gnome.desktop.peripherals.mouse speed 0.5
+gsettings set org.gnome.desktop.peripherals.mouse natural-scroll false
+gsettings set org.gnome.settings-daemon.peripherals.mouse double-click 300
+
+### Keyboard settings
+gsettings set org.gnome.desktop.peripherals.keyboard repeat true
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
+gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
