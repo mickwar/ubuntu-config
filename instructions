@@ -70,14 +70,24 @@ sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
 # launchers appear in the dialog and can be enabled or disabled.
 
 ### clean up the home directory
-# 1. Run the command:
-sed -i 's/HOME\/[A-Z].*/HOME\/downloads/' ~/.config/user-dirs.dirs
+# 1. Run the commands:
+xdg-user-dirs-update --set DESKTOP ~/downloads
+xdg-user-dirs-update --set DOWNLOAD ~/downloads
+xdg-user-dirs-update --set TEMPLATES ~/downloads
+xdg-user-dirs-update --set PUBLICSHARE ~/downloads
+xdg-user-dirs-update --set DOCUMENTS ~/downloads
+xdg-user-dirs-update --set MUSIC ~/downloads
+xdg-user-dirs-update --set PICTURES ~/downloads
+xdg-user-dirs-update --set VIDEOS ~/downloads
 # to set all those default directories to ~/downloads.
 # 2. Remove every non hidden directory in ~/ with (be careful)
 #find ~ -maxdepth 1 -type d -not -path '*/\.*' -name '[A-Z]*' -exec rm -rf {} \;
 # 3. Create directories:
 mkdir ~/bin ~/downloads ~/files
 # 4. Make necessary changes in web browser (such as where to download)
+# 5. Prevent nautilus from re-creating unwanted directories in $HOME
+sudo sed -i s/enabled=True/enabled=False/g /etc/xdg/user-dirs.conf
+
 
 ### Make soft links for the config and rc files in this directory to
 ### the home directory (assumes the current directory is the one with
@@ -222,9 +232,17 @@ gsettings set org.gnome.desktop.peripherals.keyboard repeat true
 gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
 gsettings set org.gnome.desktop.peripherals.keyboard delay 200
 
-### Change background
+### Change background (to black)
 gsettings set org.gnome.settings-daemon.plugins.background active true
 gsettings set org.gnome.desktop.background picture-uri ''
 gsettings set org.gnome.desktop.background picture-options 'none'
 gsettings set org.gnome.desktop.background primary-color '#000000000000'
 
+### Changing log-in screen background (to black)
+sudo bash -c "cat << EOF > /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
+[com.canonical.unity-greeter]
+background=''
+background-color='#00000'
+draw-user-backgrounds=false
+EOF"
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
