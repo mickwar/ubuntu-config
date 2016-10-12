@@ -237,13 +237,22 @@ gsettings set org.gnome.settings-daemon.plugins.background active true
 gsettings set org.gnome.desktop.background picture-uri ''
 gsettings set org.gnome.desktop.background picture-options 'none'
 gsettings set org.gnome.desktop.background primary-color '#000000000000'
+gsettings set org.gnome.desktop.background color-shading-type 'solid'
+# The above lines weren't working in 14.04, follow up with these two lines
+# gsettings set org.gnome.desktop.background secondary-color '#000000000000'
+# gsettings set org.gnome.desktop.background color-shading-type 'vertical'
 
 ### Changing log-in screen background (to black)
 sudo bash -c "cat << EOF > /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
 [com.canonical.unity-greeter]
 background=''
+<<<<<<< HEAD
 background-color='#000000000000'
+=======
+background-color='#000000'
+>>>>>>> 39a003578407f8ef51049f3487a1f04dec2d70b6
 draw-grid=false
 draw-user-backgrounds=false
 EOF"
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
