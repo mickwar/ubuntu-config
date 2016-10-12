@@ -242,7 +242,8 @@ gsettings set org.gnome.desktop.background primary-color '#000000000000'
 sudo bash -c "cat << EOF > /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
 [com.canonical.unity-greeter]
 background=''
-background-color='#00000'
+background-color='#000000000000'
+draw-grid=false
 draw-user-backgrounds=false
 EOF"
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
