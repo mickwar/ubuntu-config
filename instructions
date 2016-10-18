@@ -2,7 +2,7 @@
 ### set up to how I like
 
 ### things to install
-vim tmux build-essential tex-live git inotify-tools
+vim tmux build-essential texlive git inotify-tools
 # the inotify-tools package is for the vulture binary
 # installing openssh-server allows others to ssh into the computer
 # libcurl4-gnults-dev is required to install RCurl package
@@ -31,11 +31,9 @@ sudo apt-get install r-base
 
 # set a default CRAN mirror for installing packages
 # edit /etc/R/Rprofile.site (need sudo)
-# add the line (not related to the mirror):
-options("max.print"=10000)
-options("menu.graphics"=FALSE)
-
 # add the following lines:
+options("max.print"=1000)
+options("menu.graphics"=FALSE)
 local({r <- getOption("repos")
     r["CRAN"] <- "http://cran.cnr.berkeley.edu"
     options(repos=r)})
