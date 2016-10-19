@@ -2,7 +2,7 @@
 ### set up to how I like
 
 ### things to install
-vim tmux build-essential texlive git inotify-tools
+vim tmux build-essential texlive-full git inotify-tools
 # the inotify-tools package is for the vulture binary
 # installing openssh-server allows others to ssh into the computer
 # libcurl4-gnults-dev is required to install RCurl package
