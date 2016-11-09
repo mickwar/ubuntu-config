@@ -1,8 +1,8 @@
 " majority by David Dahl, editted by Mickey Warner
 " Basic stuff
 syntax on               " Syntax highlighting
-set hlsearch                " Highlight search items
-set incsearch               " Highlight search items as you type
+" set hlsearch                " Highlight search items
+" set incsearch               " Highlight search items as you type
 " set showmatch               " Show matches for parenthesis, etc.
 set expandtab               " Use softtabs
 set tabstop=4 shiftwidth=4  " Set tab width
