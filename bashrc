@@ -117,6 +117,7 @@ set -o noclobber
 # Set-up prompt
 #PS1="\[\033[1;36m\]\h\[\033[0m\]: \[\033[1;34m\]\W\[\033[0m\]/ \[\033[1;36m\]\$\[\033[0m\] "
 
+export TERM=xterm-256color
 export EDITOR=vi
 PATH="$HOME/bin:$PATH"
 #export PATH=~/bin:$PATH

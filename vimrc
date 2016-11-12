@@ -6,8 +6,10 @@ syntax on               " Syntax highlighting
 " set showmatch               " Show matches for parenthesis, etc.
 set expandtab               " Use softtabs
 set tabstop=4 shiftwidth=4  " Set tab width
-set background=light        " Assume a light background (dark is the other option)
+" set background=dark         " Assume a light background (dark is the other option)
 set number                  " add line numbers
+
+colorscheme redmagick
 
 filetype plugin on
 

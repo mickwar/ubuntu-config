@@ -18,6 +18,9 @@ alias mv="/bin/mv -i"
 alias cp="/bin/cp -i"
 alias rm="/bin/rm -i"
 
+# force tmux to think the terminal has 256 color support
+alias tmux="tmux -2"
+
 # open chrome from terminal
 alias chrome="google-chrome &"
 

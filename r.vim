@@ -129,10 +129,12 @@ syn match rOpError  '>>'
 
 syn match rArrow "<\{1,2}-"
 syn match rArrow "->\{1,2}"
+syn match rAssignment "[<>=!]\@<![=][<>=!]\@!"
+"syn match rAssignment "[=]\@![<>=]"
 
 " Special
 syn match rDelimiter "[,;:]"
-syn match rGroup "[()\[\]{}]"
+" syn match rGroup "[()\[\]{}]"
 
 " match valid R object name followed by a parenthesis (separate by 0 or more spaces)
 syn match rFunction "\(\(\a\|\.\a\|\._\|\.\.\)[\._\a0-9]*\)\+\ *[(]\@="
@@ -140,19 +142,21 @@ syn match rFunction "\(\(\a\|\.\a\|\._\|\.\.\)[\._\a0-9]*\)\+\ *[(]\@="
 
 " Error
 if exists("g:r_syntax_folding")
-"   syn region rRegion matchgroup=Delimiter start=/(/ matchgroup=Delimiter end=/)/ transparent contains=ALLBUT,rError,rBraceError,rCurlyError fold
-"   syn region rRegion matchgroup=Delimiter start=/{/ matchgroup=Delimiter end=/}/ transparent contains=ALLBUT,rError,rBraceError,rParenError fold
-"   syn region rRegion matchgroup=Delimiter start=/\[/ matchgroup=Delimiter end=/]/ transparent contains=ALLBUT,rError,rCurlyError,rParenError fold
-" else
-"   syn region rRegion matchgroup=Delimiter start=/(/ matchgroup=Delimiter end=/)/ transparent contains=ALLBUT,rError,rBraceError,rCurlyError
-"   syn region rRegion matchgroup=Delimiter start=/{/ matchgroup=Delimiter end=/}/ transparent contains=ALLBUT,rError,rBraceError,rParenError
-"   syn region rRegion matchgroup=Delimiter start=/\[/ matchgroup=Delimiter end=/]/ transparent contains=ALLBUT,rError,rCurlyError,rParenError
+   syn region rRegion matchgroup=rGroup start=/(/  matchgroup=rGroup end=/)/ transparent contains=ALLBUT,rError,rBraceError,rCurlyError,rAssignment fold
+   syn region rRegion matchgroup=rGroup start=/{/  matchgroup=rGroup end=/}/ transparent contains=ALLBUT,rError,rBraceError,rParenError fold
+   syn region rRegion matchgroup=rGroup start=/\[/ matchgroup=rGroup end=/]/ transparent contains=ALLBUT,rError,rCurlyError,rParenError,rAssignment fold
+ else
+   syn region rRegion matchgroup=rGroup start=/(/  matchgroup=rGroup end=/)/ transparent contains=ALLBUT,rError,rBraceError,rCurlyError,rAssignment
+   syn region rRegion matchgroup=rGroup start=/{/  matchgroup=rGroup end=/}/ transparent contains=ALLBUT,rError,rBraceError,rParenError
+   syn region rRegion matchgroup=rGroup start=/\[/ matchgroup=rGroup end=/]/ transparent contains=ALLBUT,rError,rCurlyError,rParenError,rAssignment
 endif
 " 
-" syn match rError      "[)\]}]"
-" syn match rBraceError "[)}]" contained
-" syn match rCurlyError "[)\]]" contained
-" syn match rParenError "[\]}]" contained
+"  syn match rError      "[)\]}]"
+"  syn match rBraceError "[)}]" contained
+"  syn match rCurlyError "[)\]]" contained
+"  syn match rParenError "[\]}]" contained
+
+"syn region rRegion matchgroup=rGroup start=/(/ matchgroup=rGroup end=/)/ transparent contains=ALLBUT,rAssignment fold
 
 " Source list of R functions. The list is produced by the Vim-R-plugin
 " http://www.vim.org/scripts/script.php?script_id=2628
@@ -187,79 +191,42 @@ if &filetype == "rhelp"
   syn match rhSection "\\dontrun\>"
 endif
 
-" redefine colors for strings and comments
-" hi String     ctermfg=lightred
-" hi Comment    ctermfg=darkgray
-"hi Statement  ctermfg=brown
-"hi Type       ctermfg=darkcyan
-"hi Operator   ctermfg=brown
-"hi Number     ctermfg=darkred
-"hi Delimiter  ctermfg=darkmagenta
-"
-hi rArrow       ctermfg=yellow      cterm=bold
-hi rComment     ctermfg=darkgray    cterm=bold
-hi rDelimiter   ctermfg=darkmagenta cterm=none
-hi rFunction    ctermfg=blue        cterm=none
-hi rGroup       ctermfg=cyan        cterm=none
-hi rString      ctermfg=lightred    cterm=bold
-hi rType        ctermfg=green       cterm=bold
-" 
-" "hi Statement   ctermfg=yellow  cterm=none
-" hi Statement   ctermfg=yellow  cterm=bold
-" 
-" 
-" hi Operator    ctermfg=yellow  cterm=none
-" 
-" hi Number      ctermfg=red  cterm=none
-" 
-" hi Delimiter   ctermfg=cyan  cterm=none
-" 
-" "hi Function    ctermfg=cyan  cterm=bold
-" "hi Function    ctermfg=cyan  cterm=none
-" "hi Function    ctermfg=blue  cterm=bold
-" 
-" hi Boolean     ctermfg=white  cterm=none
-" hi Error       ctermfg=white  cterm=none
-" hi Conditional ctermfg=red cterm=none
-" hi Constant    ctermfg=white  cterm=none
-" 
-" hi PreProc     ctermfg=magenta cterm=bold
 
-
-
-" " Define the default highlighting.
-" hi def link rArrow       Statement	
-" hi def link rBoolean     Boolean
-" hi def link rBraceError  Error
-" hi def link rComment     Comment
-" hi def link rOComment    Comment
-" hi def link rComplex     Number
-" hi def link rConditional Conditional
-" hi def link rConstant    Constant
-" hi def link rCurlyError  Error
-" hi def link rDelimiter   Delimiter
-" hi def link rDollar      SpecialChar
-" hi def link rError       Error
-" hi def link rFloat       Float
-" hi def link rFunction    Function
-" hi def link rHelpIdent   Identifier
-" hi def link rhPreProc    PreProc
-" hi def link rhSection    PreCondit
-" hi def link rInteger     Number
-" hi def link rLstElmt	 Normal
-" hi def link rNameWSpace  Normal
-" hi def link rNumber      Number
-" hi def link rOperator    Operator
-" hi def link rOpError     Error
-" hi def link rParenError  Error
-" hi def link rPreProc     PreProc
-" hi def link rRepeat      Repeat
-" hi def link rSpecial     SpecialChar
-" hi def link rStatement   Statement
-" hi def link rString      String
-" hi def link rStrError    Error
-" hi def link rType        Type
-" hi def link rOKeyword    Title
+" Link the R types to the standard ones
+hi def link rArrow       Statement	
+hi def link rAssignment  Statement	
+hi def link rBoolean     Boolean
+hi def link rBraceError  Error
+hi def link rComment     Comment
+hi def link rOComment    Comment
+hi def link rComplex     Number
+hi def link rConditional Conditional
+hi def link rConstant    Constant
+hi def link rCurlyError  Error
+hi def link rDelimiter   Delimiter
+hi def link rDollar      SpecialChar
+hi def link rError       Error
+hi def link rFloat       Float
+hi def link rFunction    Function
+hi def link rGroup       Delimiter
+hi def link rHelpIdent   Identifier
+hi def link rhPreProc    PreProc
+hi def link rhSection    PreCondit
+hi def link rInteger     Number
+hi def link rLstElmt	   Normal
+hi def link rNameWSpace  Normal
+hi def link rNumber      Number
+hi def link rOperator    Operator
+hi def link rOpError     Error
+hi def link rParenError  Error
+hi def link rPreProc     PreProc
+hi def link rRepeat      Repeat
+hi def link rSpecial     SpecialChar
+hi def link rStatement   Statement
+hi def link rString      String
+hi def link rStrError    Error
+hi def link rType        Function
+hi def link rOKeyword    Title
 
 let b:current_syntax="r"
 
