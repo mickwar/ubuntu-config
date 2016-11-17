@@ -25,7 +25,7 @@ hi DiffChange   term=NONE cterm=NONE ctermfg=NONE ctermbg=46
 hi DiffDelete   term=NONE cterm=NONE ctermfg=251  ctermbg=46 
 hi DiffText     term=NONE cterm=NONE ctermfg=251  ctermbg=244
 hi Directory    term=NONE cterm=NONE ctermfg=244  ctermbg=16
-hi Error        term=NONE cterm=NONE ctermfg=46   ctermbg=46 
+hi Error        term=NONE cterm=NONE ctermfg=46   ctermbg=NONE
 hi ErrorMsg     term=NONE cterm=NONE ctermfg=46   ctermbg=16
 hi FoldColumn   term=NONE cterm=NONE ctermfg=238  ctermbg=NONE
 hi Folded       term=NONE cterm=NONE ctermfg=238  ctermbg=NONE
@@ -46,7 +46,7 @@ hi StatusLine   term=NONE cterm=NONE ctermfg=238  ctermbg=NONE
 hi String       term=NONE cterm=NONE ctermfg=160  ctermbg=NONE
 hi TabLineSel   term=NONE cterm=NONE ctermfg=251  ctermbg=NONE
 hi Title        term=NONE cterm=NONE ctermfg=52   ctermbg=NONE
-hi Todo         term=NONE cterm=NONE ctermfg=251  ctermbg=46 
+hi Todo         term=NONE cterm=NONE ctermfg=232  ctermbg=242
 hi Type         term=NONE cterm=NONE ctermfg=251  ctermbg=NONE
 hi VertSplit    term=NONE cterm=NONE ctermfg=238  ctermbg=NONE
 hi Visual       term=NONE cterm=NONE ctermfg=238  ctermbg=251
