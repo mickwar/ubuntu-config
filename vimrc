@@ -1,13 +1,9 @@
-" majority by David Dahl, editted by Mickey Warner
 " Basic stuff
-syntax on               " Syntax highlighting
-" set hlsearch                " Highlight search items
-" set incsearch               " Highlight search items as you type
-" set showmatch               " Show matches for parenthesis, etc.
+syntax on                   " Syntax highlighting
 set expandtab               " Use softtabs
 set tabstop=4 shiftwidth=4  " Set tab width
-" set background=dark         " Assume a light background (dark is the other option)
 set number                  " add line numbers
+" set linebreak
 
 colorscheme redmagick
 
@@ -60,23 +56,19 @@ endfunction
 command -nargs=+ E :call ExecuteShellCommand(<f-args>)
 
 " Keybinding for word wrap
-nnoremap <C-x> gqap
+" nnoremap <C-x> gqap
 
 " Move between tabs --- Does not work within tmux.
-nnoremap <silent> <A-Right> :tabnext<CR>
-nnoremap <silent> <A-Left> :tabprevious<CR>
+" nnoremap <silent> <A-Right> :tabnext<CR>
+" nnoremap <silent> <A-Left> :tabprevious<CR>
 
-" Switch to hex-editor
-noremap <F8> :%!xxd<CR>
-" Switch back
-noremap <F7> :%!xxd -r<CR>
+" " Switch to hex-editor
+" noremap <F8> :%!xxd<CR>
+" " Switch back
+" noremap <F7> :%!xxd -r<CR>
 
-" map F1 to the escape key (as opposed to help menu)
-" first map F1 to no operation
-nmap <F1> <nop>
-" map for normal mode, imap for when in interaction (?) mode
-map <F1> <esc>
-imap <F1> <esc>
+" make F1 clear search expression
+nmap <F1> :let @/ = ""<CR>
 
 " disable that annoying command history menu
 nmap q: <nop>
@@ -91,25 +83,14 @@ command Q :q
 command Wq :wq
 command WQ :wq
 
-" make shift-j and shift-k move left or right 147 (up and down lines with full screen, <1000 lines)
-vmap <S-j> 208l
-nmap <S-j> 208l
-vmap <S-k> 208h
-nmap <S-k> 208h
-" make shift-h and shift-l move left or right 37 (quarter screen, <1000 lines)
-vmap <S-l> 104l
-nmap <S-l> 104l
-vmap <S-h> 104h
-nmap <S-h> 104h
-
 " disable shift-h and shift-l which move you to top/bottom of screen
-" vmap <S-h> <nop>
-" nmap <S-h> <nop>
+vmap <S-k> <nop>
+nmap <S-k> <nop>
 " vmap <S-l> <nop>
 " nmap <S-l> <nop>
 
 " make F5 disable highlight after searcing
-nmap <silent> <F5> :silent noh<CR>
+" nmap <silent> <F5> :silent noh<CR>
 
 " delete sentence (go to visual mode, find next period, delete until that)
 " nmap <C-d> v/[.]<esc>x:nohl<esc>
