@@ -99,3 +99,8 @@ nmap <S-k> <nop>
 vmap <C-S-y> :w! ~/.vbuf<CR>      " copy the current visual selection to ~/.vbuf
 nmap <C-S-p> :r ~/.vbuf<CR>       " paste the contents of the buffer file
 
+
+if exists('$TMUX')
+    autocmd BufNewFile,BufReadPost,BufEnter,CursorMoved * call system("tmux set automatic-rename-format '#{?pane_in_mode,[tmux]," . expand("%:t") . "}#{?pane_dead,[dead],}'")
+    autocmd BufHidden,VimLeave * call system("tmux set automatic-rename-format '#{?pane_in_mode,[tmux],#{pane_current_command}}#{?pane_dead,[dead],}'")
+endif
