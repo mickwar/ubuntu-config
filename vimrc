@@ -3,6 +3,7 @@ syntax on                   " Syntax highlighting
 set expandtab               " Use softtabs
 set tabstop=4 shiftwidth=4  " Set tab width
 set number                  " add line numbers
+set ruler
 " set linebreak
 
 colorscheme redmagick
