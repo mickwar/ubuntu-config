@@ -46,4 +46,41 @@ ln -s $DIR/gitignore_global ~/.gitignore_global
 ln -s $DIR/tmux.conf ~/.tmux.conf
 
 git clone git@github.com:mickwar/binaries ~/files/repos/binaries 
-git clone git@github.com:mickwar/binaries ~/files/repos/binaries 
+# git clone git@github.com:mickwar/data ~/files/repos/data
+# git clone git@github.com:mickwar/homework ~/files/repos/homework
+
+### Set custom datetime format
+gsettings set com.canonical.indicator.datetime time-format 'custom'
+gsettings set com.canonical.indicator.datetime custom-time-format '          %A     %d %b %Y     %H:%M:%S          '
+
+### Mouse/touchpad settings
+gsettings set org.gnome.desktop.peripherals.touchpad send-events 'disabled'
+gsettings set org.gnome.desktop.peripherals.mouse speed 0.5
+gsettings set org.gnome.desktop.peripherals.mouse natural-scroll false
+gsettings set org.gnome.settings-daemon.peripherals.mouse double-click 300
+
+### Keyboard settings
+gsettings set org.gnome.desktop.peripherals.keyboard repeat true
+gsettings set org.gnome.desktop.peripherals.keyboard repeat-interval 20
+gsettings set org.gnome.desktop.peripherals.keyboard delay 200
+
+### Change background (to black)
+gsettings set org.gnome.settings-daemon.plugins.background active true
+gsettings set org.gnome.desktop.background picture-uri ''
+gsettings set org.gnome.desktop.background picture-options 'none'
+gsettings set org.gnome.desktop.background primary-color '#000000000000'
+gsettings set org.gnome.desktop.background color-shading-type 'solid'
+# The above lines weren't working in 14.04, follow up with these two lines
+# gsettings set org.gnome.desktop.background secondary-color '#000000000000'
+# gsettings set org.gnome.desktop.background color-shading-type 'vertical'
+
+### Changing log-in screen background (to black)
+sudo bash -c "cat << EOF > /usr/share/glib-2.0/schemas/10_unity_greeter_background.gschema.override
+[com.canonical.unity-greeter]
+background=''
+background-color='#000000'
+draw-grid=false
+draw-user-backgrounds=false
+EOF"
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+
