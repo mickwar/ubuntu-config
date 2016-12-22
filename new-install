@@ -1,0 +1,15 @@
+#!/bin/bash/
+
+# Assumes git has already been installed and the ubuntu-config repository
+# clones and placed in ~/files/repos/ubuntu-config/
+
+sudo apt-get remove indicator-messages
+sudo apt-get purge firefox thunderbird
+
+sudo apt update
+sudo apt upgrade
+
+sudo apt-get install vim tmux build-essential texlive-full inotify-tools chromium-browser
+
+
+sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
