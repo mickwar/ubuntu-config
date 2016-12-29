@@ -11,6 +11,11 @@ sudo apt upgrade
 
 sudo apt-get install vim tmux build-essential texlive-full inotify-tools chromium-browser
 
+echo "deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu xenial/" | sudo tee -a  /etc/apt/sources.list
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
+sudo apt-get update
+sudo apt-get install r-base
 
 sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
 
