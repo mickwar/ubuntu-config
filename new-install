@@ -1,5 +1,7 @@
 #!/bin/bash/
 
+cd $HOME
+
 # Assumes git has already been installed and the ubuntu-config repository
 # clones and placed in ~/files/repos/ubuntu-config/
 
@@ -9,14 +11,27 @@ sudo apt-get purge firefox thunderbird
 sudo apt update
 sudo apt upgrade
 
-sudo apt-get install vim tmux build-essential texlive-full inotify-tools chromium-browser
 
+### Install some standard packages
+sudo apt-get install vim tmux build-essential texlive-full inotify-tools
+
+### Install Chrome
+sudo apt-get install libxss1 libappindicator1 libindicator7
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome*.deb
+sudo apt-get install -f
+sudo dpkg -i google-chrome*.deb
+rm -f google-chrome-stable_current_amd64.deb
+sudo update-alternatives --config google-chrome
+
+### Install R
 echo "deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu xenial/" | sudo tee -a  /etc/apt/sources.list
 
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt-get update
 sudo apt-get install r-base
 
+### Clean up home directory
 sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
 
 xdg-user-dirs-update --set DESKTOP ~/downloads
@@ -31,7 +46,6 @@ xdg-user-dirs-update --set VIDEOS ~/downloads
 mkdir -p ~/bin ~/downloads ~/files
 
 sudo sed -i s/enabled=True/enabled=False/g /etc/xdg/user-dirs.conf
-
 
 rm -f ~/.bashrc
 rm -f ~/.bash_aliases
