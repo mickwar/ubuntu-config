@@ -11,7 +11,6 @@ sudo apt-get purge firefox thunderbird
 sudo apt update
 sudo apt upgrade
 
-
 ### Install some standard packages
 sudo apt-get install vim tmux build-essential texlive-full inotify-tools
 
@@ -23,17 +22,27 @@ sudo apt-get install -f
 sudo dpkg -i google-chrome*.deb
 rm -f google-chrome-stable_current_amd64.deb
 sudo update-alternatives --config google-chrome
+# Some Chrome settings may need to be changed such as download location
+# and privacy settings
 
 ### Install R
 echo "deb http://cran.cnr.berkeley.edu/bin/linux/ubuntu xenial/" | sudo tee -a  /etc/apt/sources.list
-
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9
 sudo apt-get update
 sudo apt-get install r-base
 
-### Clean up home directory
+# Set a default CRAN mirror for installing packages and other options
+echo '
+options("max.print"=1000)
+options("menu.graphics"=FALSE)
+local({r <- getOption("repos")
+    r["CRAN"] <- "http://cran.cnr.berkeley.edu"
+    options(repos=r)})' | sudo tee -a /etc/R/Rprofile.site
+
+### Prevent some applications from running on start up (esp. update manager)
 sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
 
+### Clean up home directory
 xdg-user-dirs-update --set DESKTOP ~/downloads
 xdg-user-dirs-update --set DOWNLOAD ~/downloads
 xdg-user-dirs-update --set TEMPLATES ~/downloads
@@ -64,9 +73,14 @@ ln -s $DIR/gitconfig ~/.gitconfig
 ln -s $DIR/gitignore_global ~/.gitignore_global
 ln -s $DIR/tmux.conf ~/.tmux.conf
 
+### Clone some repositories
 git clone git@github.com:mickwar/binaries ~/files/repos/binaries 
 # git clone git@github.com:mickwar/data ~/files/repos/data
 # git clone git@github.com:mickwar/homework ~/files/repos/homework
+
+### Disable "Have file manager handle the desktop" setting (for no
+### search box on the desktop when just randomly typing)
+gsettings set org.gnome.desktop.background show-desktop-icons false
 
 ### Set custom datetime format
 gsettings set com.canonical.indicator.datetime time-format 'custom'
