@@ -78,6 +78,8 @@ ln -s $DIR/tmux.conf ~/.tmux.conf
 # git clone git@github.com:mickwar/data ~/files/repos/data
 # git clone git@github.com:mickwar/homework ~/files/repos/homework
 # git clone git@github.com:mickwar/r-sandbox ~/files/repos/r-sandbox
+# git clone git@github.com:mickwar/mwBASE ~/files/repos/mwBASE
+# git clone git@github.com:mickwar/mwEVT ~/files/repos/mwEVT
 
 ### Disable "Have file manager handle the desktop" setting (for no
 ### search box on the desktop when just randomly typing)
