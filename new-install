@@ -74,9 +74,10 @@ ln -s $DIR/gitignore_global ~/.gitignore_global
 ln -s $DIR/tmux.conf ~/.tmux.conf
 
 ### Clone some repositories
-git clone git@github.com:mickwar/binaries ~/files/repos/binaries 
+# git clone git@github.com:mickwar/binaries ~/files/repos/binaries 
 # git clone git@github.com:mickwar/data ~/files/repos/data
 # git clone git@github.com:mickwar/homework ~/files/repos/homework
+# git clone git@github.com:mickwar/r-sandbox ~/files/repos/r-sandbox
 
 ### Disable "Have file manager handle the desktop" setting (for no
 ### search box on the desktop when just randomly typing)
