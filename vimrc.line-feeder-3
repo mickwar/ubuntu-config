@@ -50,10 +50,12 @@ function! LineFeederSetUp()
         let cmd = "bash"
     endif
     let cmd = input("Execute: ",cmd)
-"   if cmd != ""
-        "call system("tmux set-option default-path " . shellescape(expand("%:p:h")))
+    if ext == "tex"
+        call system("tmux split-window -d -l 2 " . shellescape("exec evince output_latex.pdf"))
+        call system("tmux split-window -d -p 30 " . shellescape("exec " . cmd))
+    else
         call system("tmux split-window -d -p 34 " . shellescape("exec " . cmd))
-"   endif
+    endif
 endfunction
 
 function! Sourcer()
