@@ -51,7 +51,7 @@ function! LineFeederSetUp()
     endif
     let cmd = input("Execute: ",cmd)
     if ext == "tex"
-        call system("tmux split-window -d -l 2 " . shellescape("exec evince output_latex.pdf"))
+        call system("tmux split-window -d -l 2 " . shellescape("exec `while [ ! -f output_latex.pdf ]; do sleep 1; done; evince output_latex.pdf`"))
         call system("tmux split-window -d -p 30 " . shellescape("exec " . cmd))
     else
         call system("tmux split-window -d -p 34 " . shellescape("exec " . cmd))
