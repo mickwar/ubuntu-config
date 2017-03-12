@@ -12,7 +12,7 @@ sudo apt update
 sudo apt upgrade
 
 ### Install some standard packages
-sudo apt-get install vim tmux build-essential texlive-full inotify-tools
+sudo apt-get install vim tmux build-essential texlive-full inotify-tools gnome-tweak-tool
 
 ### Install Chrome
 sudo apt-get install libxss1 libappindicator1 libindicator7
