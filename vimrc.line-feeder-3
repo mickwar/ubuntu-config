@@ -41,9 +41,13 @@ function! LineFeederSetUp()
     elseif ext == "jl"
         let cmd = "nice -5 julia"
     elseif ext == "tex"
+        " Run texbuild when any .tex file in DIR is modified
+        " (useful when working with multiple files that link to one tex document)
+        let regex = expand("*.tex")
+        let regex = substitute(regex, ".tex\n", ".tex|", "gc")
         " my texbuild function still assumes that main.tex is the file to be compiled, not
         " necessarily file
-        let cmd = "vulture " . file . " texbuild --noevince"
+        let cmd = "vulture \"" . regex . "\" texbuild --noevince"
     elseif ext == "ly"
         let cmd = "vulture " . file . " lilypond " . file
     else
