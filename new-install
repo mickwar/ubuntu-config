@@ -73,6 +73,15 @@ ln -s $DIR/gitconfig ~/.gitconfig
 ln -s $DIR/gitignore_global ~/.gitignore_global
 ln -s $DIR/tmux.conf ~/.tmux.conf
 
+mkdir -p ~/.vim
+mkdir -p ~/.vim/colors
+mkdir -p ~/.vim/ftdetect
+mkdir -p ~/.vim/syntax
+
+ln -s $DIR/redmagick.vim ~/.vim/colors/redmagick.vim
+echo "au BufRead,BufNewFile *.R set filetype=r" >> ~/.vim/ftdetect/r.vim
+ln -s $DIR/r.vim ~/.vim/syntax/r.vim
+
 ### Clone some repositories
 # git clone git@github.com:mickwar/binaries ~/files/repos/binaries 
 # git clone git@github.com:mickwar/data ~/files/repos/data
