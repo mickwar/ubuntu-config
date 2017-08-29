@@ -41,6 +41,25 @@ local({r <- getOption("repos")
 # install rgl package by:
 sudo apt-get install r-cran-rgl
 
+# Get better linear algebra packages to speed up R (OpenBLAS or ATLAS)
+# (May also have 3gf or something, double check to find the right packages)
+sudo apt install libopenblas-base libatlas3-base
+
+# Select which package to use
+sudo update-alternatives --config libblas.so.3
+sudo update-alternatives --config liblapack.so.3
+# And select the desired packages
+# OpenBLAS seemed to work best for me (from about 2:15 minutes with standard BLAS
+# to about 0:30 with OpenBLAS)
+
+# Benchmark script to compare
+curl http://r.research.att.com/benchmarks/R-benchmark-25.R -O
+
+# Run with
+cat R-benchmark-25.R | time R --slave
+# Probably need to install packages SuppDists, Matrix
+# There is an alternative to SuppDists, check the benchmark script
+
 ### generate ssh key
 ssh-keygen -t rsa -C "your_email@example.com"
 # Creates a new ssh key, using the provided email as a label
