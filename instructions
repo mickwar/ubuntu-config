@@ -272,3 +272,6 @@ sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ hsize 2
 gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ vsize 2
 
+### Software updater keeps showing up even when automatic updates are disabled
+### Turn off that notification
+gsettings set com.ubuntu.update-notifier no-show-notifications true
