@@ -269,7 +269,7 @@ EOF"
 sudo glib-compile-schemas /usr/share/glib-2.0/schemas
 
 ### Change number of workspaces
-gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ hsize 2
+gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ hsize 3
 gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/ vsize 2
 
 ### Software updater keeps showing up even when automatic updates are disabled
